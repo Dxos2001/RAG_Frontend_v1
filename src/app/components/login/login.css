@@ -1,87 +1,152 @@
-/* Contenedor general */
+/* Reseteo y fuente base */
+:host {
+    display: block;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+/* Contenedor principal para fondo y centrado vertical */
 .login-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 70px; 
   background: linear-gradient(to bottom right, #0a0a1a, #001f3f, #004080);
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  padding-bottom: 20px; 
 }
 
-/* Caja central grande */
+/* HEADER TRANSPARENTE y fijo */
+.app-header {
+  background-color: rgba(0, 64, 128, 0.3); /* azul con transparencia */
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.app-header nav {
+  display: flex;
+  align-items: center;
+}
+
+.app-header nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.app-header nav a:hover {
+  color: #00c6ff;
+}
+
+/* Caja central - MODIFICADA para más transparencia y borde */
 .login-box {
   display: flex;
-  flex-direction: row;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  background: rgba(255, 255, 255, 0.05); /* Más transparente (0.05) */
+  backdrop-filter: blur(16px); /* Más blur */
   border-radius: 20px;
-  width: 95%;
-  max-width: 950px;  /* MÁS ANCHO */
-  min-height: 700px;  /* MÁS ALTO */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil (relleno visual) */
+  
+  width: 90%;
+  max-width: 450px;
+  min-height: 500px;
   overflow: hidden;
-  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.6); /* Sombra más fuerte */
+  
+  animation: fadeIn 0.8s ease-out;
 }
 
-
-/* Mantener inputs como antes */
+/* Columna de login */
 .login-left {
-  flex: 1;
-  padding: 60px;
+  width: 100%;
+  padding: 60px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centra verticalmente */
+  justify-content: center;
+  align-items: center;
   color: white;
+  text-align: center;
 }
 
-
-.login-left {
-  flex: 1;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;   /* centra en vertical */
-  align-items: center;       /* centra en horizontal */
-  color: white;
-}
-
-/* Icon Login  */
 .avatar img {
   width: 120px;
   height: 120px;
   border-radius: 0%;
-  padding: 10px;
-  margin-bottom: 25px;
+  border-radius: 50%; /* lo hace redondo */
+  background: transparent; /* asegura que no tenga color detrás */
 }
 
 .login-left h2 {
-  margin-bottom: 30px;
-  font-size: 34px;
+  margin-top: 25px;  /* Baja el texto */
+  margin-bottom: 20px; /* Espacio hacia los inputs */
+  font-size: 32px;
   font-weight: bold;
+  text-align: center;
+}
+
+/* Contenedor del input para manejar el margen */
+.input-box {
+  width: 100%; 
+  margin: 14px 0 24px 0; /* Margen aplicado al contenedor */
+}
+
+/* Wrapper para posicionar el ícono dentro del input */
+.input-wrapper {
+  position: relative;
 }
 
 .login-left input {
   width: 100%;
-  padding: 16px;
-  margin: 14px 0 24px 0;
-  border: none;
+  /* Padding derecho aumentado para dar espacio al ícono */
+  padding: 16px 45px 16px 16px; 
+  margin: 0; /* Sin margen aquí */
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
   font-size: 16px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.login-left input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .login-left input:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.3);
+  border-color: #00c6ff;
+  box-shadow: 0 0 8px rgba(0, 198, 255, 0.5);
 }
 
-.login-left label {
-  display: block;
-  text-align: left;
-  font-size: 15px;
-  margin-bottom: 6px;
-  font-weight: bold;
+/* Estilos del Ícono */
+.input-icon {
+  position: absolute;
+  right: 15px; /* Posicionado a la derecha del input */
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  width: 20px;
+  height: 20px;
+  pointer-events: none; /* Asegura que el ícono no bloquee el click/focus del input */
 }
 
 .login-left button {
@@ -94,14 +159,14 @@
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  
 }
 
 .login-left button:hover {
   background: linear-gradient(to right, #00c6ff, #004080);
-  
+  transform: translateY(-2px);
 }
-
 
 .mensaje {
   margin-top: 20px;
@@ -109,55 +174,69 @@
   font-weight: bold;
 }
 
-/* Columna derecha (Imagen) */
-.login-right {
-  flex: 1;
-  background: #fff;
+/* Animación de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.login-right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ✅ RESPONSIVE */
+/* ------------------------------------------------------------------------------------------------------ */
+/* RESPONSIVE */
 
 /* Tablets */
 @media (max-width: 992px) {
+  .app-header {
+    padding: 10px 20px;
+  }
+
+  .app-header nav a {
+    margin-left: 15px;
+    font-size: 15px;
+  }
+  
   .login-box {
-    max-width: 95%;
-    min-height: 550px;
-  }
-
-  .login-left {
-    padding: 40px;
-  }
-
-  .login-left h2 {
-    font-size: 28px;
-  }
-
-  .avatar img {
-    width: 100px;
-    height: 100px;
+    max-width: 400px;
   }
 }
 
 /* Móviles */
 @media (max-width: 768px) {
-  .login-box {
+  /* AJUSTES DE HEADER PARA MÓVILES */
+  .app-header {
     flex-direction: column;
-    max-width: 95%;
-    min-height: auto;
+    align-items: flex-start;
+    padding: 10px 20px;
   }
 
-  .login-right {
-    display: none; /* solo login */
+  .app-header h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .app-header nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app-header nav a {
+    margin: 5px 0;
+    padding: 5px 0;
+  }
+  
+  .login-container {
+    padding-top: 110px; 
+    align-items: flex-start; 
+  }
+  
+  .login-box {
+    margin-top: 20px; 
+    margin-bottom: 20px;
   }
 
   .login-left {
-    padding: 30px;
+    padding: 30px 20px;
   }
 
   .login-left h2 {
@@ -175,5 +254,11 @@
   .login-left button {
     font-size: 14px;
     padding: 12px;
+  }
+  .login-left input {
+    padding-right: 40px; /* Ajustar padding derecho para el ícono en pantallas pequeñas */
+  }
+  .input-icon {
+    right: 10px; /* Ajustar posición del ícono en pantallas pequeñas */
   }
 }
